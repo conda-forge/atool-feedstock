@@ -12,7 +12,7 @@ source:
 build:
   skip: true  # [win or osx]
   number: 0
-  script: set -x; set +e; echo "${PREFIX}"; ./configure --prefix="${PREFIX}"; grep PREFIX Makefile; grep -i perl Makefile; exit 1 # sed -i s@'$'PREFIX@"${PREFIX}"@g Makefile && make install
+  script: set -x; set +e; echo "${PREFIX}"; ./configure --prefix=${PREFIX}; grep PREFIX Makefile; grep -i perl Makefile; grep placehold Makefile; exit 0 # sed -i s@'$'PREFIX@"${PREFIX}"@g Makefile && make install
 
 requirements:
   build:
