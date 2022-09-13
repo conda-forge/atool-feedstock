@@ -20,6 +20,8 @@ requirements:
     - make
   run:
     - perl >=5.004
+  host:
+    - perl >=5.004
 
 test:
   commands:
