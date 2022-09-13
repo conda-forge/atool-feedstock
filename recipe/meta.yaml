@@ -20,11 +20,11 @@ requirements:
     - make
   run:
     - perl >=5.004
-  host:
-    - perl >=5.004
 
 test:
   commands:
+    - grep SYSCONFDIR $(which atool)
+    - head -n 1 $(which atool)
     - atool --help
     - aunpack --help
     - apack --help
