@@ -12,7 +12,7 @@ source:
 build:
   skip: true  # [win or osx]
   number: 0
-  script: set -x; set +e; ./configure --prefix=${PREFIX}; cat Makefile; echo ______________; grep PREFIX Makefile; grep PREFIX Makefile | env -i PREFIX=$PREFIX $(which envsubst); echo MARKER1; exit 1; env -i PREFIX=$PREFIX $(which envsubst) < Makefile > Makefile2; mv Makefile2 Makefile; echo START MAKEFILE; cat Makefile; echo END MAKEFILE; grep -Hni placehold Makefile*; grep -Hni PREFIX *; exit 1; make install
+  script: set -x; set +e; ./configure --prefix=${PREFIX}; cat Makefile; echo ______________; grep -i prefix Makefile; echo ______________; grep PREFIX Makefile | env -i PREFIX=$PREFIX $(which envsubst); echo MARKER1; exit 1; env -i PREFIX=$PREFIX $(which envsubst) < Makefile > Makefile2; mv Makefile2 Makefile; echo START MAKEFILE; cat Makefile; echo END MAKEFILE; grep -Hni placehold Makefile*; grep -Hni PREFIX *; make PREFIX=$PREFIX install
 
 requirements:
   build:
