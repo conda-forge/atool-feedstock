@@ -16,8 +16,7 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - perl >=5.004
     - make
   run:
     - perl >=5.004
