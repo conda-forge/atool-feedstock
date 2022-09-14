@@ -14,7 +14,7 @@ build:
   number: 0
   #script: set -x; set +e; ./configure --prefix=${PREFIX}; cat Makefile; echo ______________1; grep -i prefix Makefile; echo ______________2; grep PREFIX Makefile; echo ______________3; grep PREFIX Makefile | env -i PREFIX=$PREFIX $(which envsubst); echo ______________4; env -i PREFIX=$PREFIX $(which envsubst) < Makefile > Makefile2; mv Makefile2 Makefile; echo START MAKEFILE; cat Makefile; echo END MAKEFILE; grep -Hni placehold Makefile*; grep -Hni PREFIX *; python -c 'print(open("Makefile", "rb").read())'; make PREFIX=$PREFIX install
   #script: ./configure --prefix=${PREFIX}; python -c 'c=open("Makefile", "rb").read(); print(c[c.find(b"DSBINDIR"):][:100]); assert b"PREFIX" in c; c = c.replace(b"$PREFIX", b"'${PREFIX}'"); open("Makefile", "wb").write(c)'; make install
-  script: ./configure --prefix=${PREFIX}; make install; sed -i s@perl -w@perl@g atool; head -n1 atool | tr p P
+  script: ./configure --prefix=${PREFIX}; make install; sed -i "s@perl -w@perl@g" atool; head -n1 atool | tr p P
 
 requirements:
   build:
@@ -30,6 +30,9 @@ test:
   commands:
     - grep SYSCONFDIR $(which atool)
     - head -n 1 $(which atool)
+    - which perl
+    - /usr/bin/env perl -V:startperl
+    - /usr/bin/env perl -w -V:startperl
     - atool --help
     - aunpack --help
     - apack --help
