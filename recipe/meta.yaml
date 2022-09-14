@@ -10,8 +10,8 @@ source:
   sha256: aaf60095884abb872e25f8e919a8a63d0dabaeca46faeba87d12812d6efc703b
 
 build:
-  skip: true  # [win or osx]
-  number: 0
+  skip: true  # [win]
+  number: 1
   script: ./configure --prefix=${PREFIX} && make && sed -i "1 s@perl -w@perl@g" atool && make install
 
 requirements:
@@ -23,12 +23,6 @@ requirements:
 
 test:
   commands:
-    - grep SYSCONFDIR $(which atool)
-    - head -n 1 $(which atool)
-    - which perl
-    - /usr/bin/env perl -V:startperl
-    - /usr/bin/env perl -w -V:startperl
-    - $(which atool) --help
     - atool --help
     - aunpack --help
     - apack --help
