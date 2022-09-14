@@ -12,7 +12,7 @@ source:
 build:
   skip: true  # [win]
   number: 1
-  script: ./configure --prefix=${PREFIX} && make && sed -i "1 s@perl -w@perl@g" atool && make install
+  script: ./configure --prefix=${PREFIX} && make && sed -i "s@perl -w@perl@g" atool && make install
 
 requirements:
   build:
