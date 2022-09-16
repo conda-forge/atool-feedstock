@@ -11,13 +11,12 @@ source:
 
 build:
   skip: true  # [win]
-  number: 0
-  script: ./configure --prefix="${PREFIX}" && make install
+  number: 1
+  script: ./configure --prefix="${PREFIX}" && make && sed -i"" -e "1s/perl -w/perl/g" atool && make install
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - perl >=5.004
     - make
   run:
     - perl >=5.004
